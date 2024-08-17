@@ -25,8 +25,14 @@ class _FancyIndicatorExampleState extends State<FancyIndicatorExample> {
       backgroundColor: Utils.primaryColor,
       body: SafeArea(
         child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
+          height: MediaQuery
+              .of(context)
+              .size
+              .height,
           child: Row(
             children: [
               FancyIndicator(
@@ -41,9 +47,15 @@ class _FancyIndicatorExampleState extends State<FancyIndicatorExample> {
                   0.7,
                   0.9,
                 ],
-                width: MediaQuery.of(context).size.width / 1.8,
-                height: MediaQuery.of(context).size.height,
-                marker: const [20,30,50,],
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width / 1.8,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height,
+                marker: const [20, 30, 50,],
                 onSelectedNumber: (number) {
                   currentHumidity.value = number;
                 },
@@ -137,7 +149,7 @@ class _FancyIndicatorExampleState extends State<FancyIndicatorExample> {
                             children: [
                               TextSpan(
                                 text:
-                                    "- extreme humidity level.\nUse precaution for set-points outside of 20%-55%",
+                                "- extreme humidity level.\nUse precaution for set-points outside of 20%-55%",
                                 style: TextStyle(
                                     color: Utils.whiteColor, fontSize: 14),
                               )
