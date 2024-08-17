@@ -6,7 +6,7 @@ import 'package:fancy_indicator/fancy_indicator.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
-  runApp(MaterialApp(home: FancyIndicatorExample(),));
+  runApp(MaterialApp(home: FancyIndicatorExample(),debugShowCheckedModeBanner: false,));
 }
 
 class FancyIndicatorExample extends StatefulWidget {
