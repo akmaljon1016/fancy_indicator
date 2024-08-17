@@ -5,8 +5,8 @@ The FancyIndicator is a customizable Flutter widget that provides a visual indic
 
 ## Showcase
 <div style="display: flex; flex-direction: row;">
-    <img src="https://github.com/akmaljon1016/fancy_indicator/blob/main/screen_record2.gif" height="275" alt="Fancy Indicator Example 1" style="margin-right: 100px;">
-    <img src="https://github.com/akmaljon1016/fancy_indicator/blob/main/screen_record.gif" height="275" alt="Fancy Indicator Example 2">
+    <img src="https://github.com/akmaljon1016/fancy_indicator/raw/main/screen_record2.gif" height="275" alt="Fancy Indicator Example 1" style="margin-right: 100px;">
+    <img src="https://github.com/akmaljon1016/fancy_indicator/raw/main/screen_record.gif" height="275" alt="Fancy Indicator Example 2">
 </div>
 
 ## Usage example
