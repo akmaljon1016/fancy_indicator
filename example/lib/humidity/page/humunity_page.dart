@@ -38,7 +38,7 @@ class _HumidityPageState extends State<HumidityPage> {
                   0.7,
                   0.9,
                 ],
-                width: MediaQuery.of(context).size.width / 1.85,
+                width: MediaQuery.of(context).size.width / 1.9,
                 height: MediaQuery.of(context).size.height,
                 marker: const [20,30,40],
                 onSelectedNumber: (number) {

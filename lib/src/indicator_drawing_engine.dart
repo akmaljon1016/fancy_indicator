@@ -64,20 +64,20 @@ class IndicatorDrawingEngine extends CustomPainter {
 
     final wavePoint = FancyIndicatorUtils.valueBetween(
         dragPosition.dy, size.height * 0.1, size.height * 0.9);
-    final controlOffset = Offset(size.width * 0.7, wavePoint);
+    final controlOffset = Offset(size.width * 0.8, wavePoint);
     final rect = Rect.fromCircle(center: controlOffset, radius: 25);
 
     ///Draw curve in line according to draggable button position
     final path = Path()
-      ..moveTo(size.width * 0.6, 0)
-      ..lineTo(size.width * 0.6, wavePoint - 75)
+      ..moveTo(size.width * 0.7, 0)
+      ..lineTo(size.width * 0.7, wavePoint - 75)
       ..quadraticBezierTo(
-          size.width * 0.60, wavePoint - 46, size.width * 0.5, wavePoint - 20)
+          size.width * 0.70, wavePoint - 46, size.width * 0.6, wavePoint - 20)
       ..quadraticBezierTo(
-          size.width * 0.44, wavePoint, size.width * 0.5, wavePoint + 20)
+          size.width * 0.54, wavePoint, size.width * 0.6, wavePoint + 20)
       ..quadraticBezierTo(
-          size.width * 0.6, wavePoint + 46, size.width * 0.6, wavePoint + 75)
-      ..lineTo(size.width * 0.6, size.height);
+          size.width * 0.7, wavePoint + 46, size.width * 0.7, wavePoint + 75)
+      ..lineTo(size.width * 0.7, size.height);
     canvas.drawPath(path, paint);
 
     ///Draggable button build
@@ -103,6 +103,13 @@ class IndicatorDrawingEngine extends CustomPainter {
         ..style = PaintingStyle.fill
         ..strokeWidth = (waveRadius >= 28.0) ? 0 : 2;
       canvas.drawCircle(controlOffset, waveRadius, wavePaint);
+    }
+    else if (waveRadius != 40.0 && waveRadius>= 28.0) {
+      Paint wavePaint1 = Paint()
+        ..color = FancyIndicatorUtils.greyColor.withAlpha(60)
+        ..style = PaintingStyle.fill
+        ..strokeWidth = (waveRadius == 28.0) ? 0 : 2;
+      canvas.drawCircle(controlOffset, waveRadius, wavePaint1);
     }
 
     ///Create and locate triangles inside Draggable Button
