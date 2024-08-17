@@ -74,7 +74,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
     ));
 
     _animation.addListener(() {
-      if (_animation.value <= 20.0 && isPlaying && isResumed == false) {
+      if (_animation.value <= 18.0 && isPlaying && isResumed == false) {
         _pauseAnimation();
       }
       atomicVariable.value = !atomicVariable.value;
@@ -177,7 +177,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
         onVerticalDragEnd: (details) {
           _tapPosition = Offset.zero;
           _validPressed = false;
-          widget.onSelectedNumber(selectedPercent);
+           widget.onSelectedNumber(selectedPercent);
           _resumeAnimation();
         },
         onVerticalDragUpdate: (details) {

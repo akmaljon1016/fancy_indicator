@@ -70,7 +70,7 @@ class IndicatorDrawingEngine extends CustomPainter {
     ///Draw curve in line according to draggable button position
     final path = Path()
       ..moveTo(size.width * 0.6, 0)
-      ..lineTo(size.width * 0.6, wavePoint - 65)
+      ..lineTo(size.width * 0.6, wavePoint - 75)
       ..quadraticBezierTo(
           size.width * 0.60, wavePoint - 46, size.width * 0.5, wavePoint - 20)
       ..quadraticBezierTo(
@@ -87,7 +87,7 @@ class IndicatorDrawingEngine extends CustomPainter {
     canvas.drawCircle(controlOffset, 28.0, circlePaint);
 
     ///Below codes responsible for Draggable button onDown animation
-    if (waveRadius <= 22.0) {
+    if (waveRadius <= 18.0) {
       Paint wavePaint = Paint()
         ..color =
             draggableButtonCircleColor //FancyIndicatorUtils.greyDarkerColor
