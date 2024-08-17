@@ -176,7 +176,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
         onVerticalDragEnd: (details) {
           _tapPosition = Offset.zero;
           _validPressed = false;
-           widget.onSelectedNumber(selectedPercent);
+          widget.onSelectedNumber(selectedPercent);
           _resumeAnimation();
         },
         onVerticalDragUpdate: (details) {

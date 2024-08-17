@@ -8,5 +8,4 @@ class Assets {
   static const String iconsDrop = 'assets/icons/drop.svg';
   static const String iconsHome = 'assets/icons/home.svg';
   static const String iconsStatistics = 'assets/icons/statistics.svg';
-
 }

@@ -12,16 +12,12 @@ class FancyIndicatorUtils {
   static const waveColor = Color(0xFF05092A);
   static const triangleColor = Color(0xFF43516C);
 
-
-
-
-
   ///Functions
 
   static Paragraph generateParagraph(
-      String text, {
-        required TextStyle style,
-      }) {
+    String text, {
+    required TextStyle style,
+  }) {
     final paragraph = ParagraphBuilder(ParagraphStyle());
     paragraph.pushStyle(style);
     paragraph.addText(text);

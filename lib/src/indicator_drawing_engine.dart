@@ -45,7 +45,6 @@ class IndicatorDrawingEngine extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-
     ///Gradient line creation
     final centerPoint = Offset(size.width / 2, size.height / 2);
     final gradient = LinearGradient(
@@ -87,7 +86,7 @@ class IndicatorDrawingEngine extends CustomPainter {
     canvas.drawCircle(controlOffset, 28.0, circlePaint);
 
     ///Below codes responsible for Draggable button onDown animation
-    if (waveRadius <= 28.0) {
+    if (waveRadius <= 18.0) {
       Paint wavePaint = Paint()
         ..color =
             draggableButtonCircleColor //FancyIndicatorUtils.greyDarkerColor
@@ -96,15 +95,14 @@ class IndicatorDrawingEngine extends CustomPainter {
       canvas.drawCircle(controlOffset, waveRadius, wavePaint);
     }
 
-    if (waveRadius != 40.0 && waveRadius < 28.0) {
+    if (waveRadius != 40.0 && waveRadius <= 18.0) {
       Paint wavePaint = Paint()
         ..color =
             draggableButtonCircleAnimateColor //FancyIndicatorUtils.greyColor
         ..style = PaintingStyle.fill
         ..strokeWidth = (waveRadius >= 28.0) ? 0 : 2;
       canvas.drawCircle(controlOffset, waveRadius, wavePaint);
-    }
-    else if (waveRadius != 40.0 && waveRadius>= 28.0) {
+    } else if (waveRadius != 40.0 && waveRadius > 18.0) {
       Paint wavePaint1 = Paint()
         ..color = FancyIndicatorUtils.greyColor.withAlpha(60)
         ..style = PaintingStyle.fill
@@ -119,7 +117,6 @@ class IndicatorDrawingEngine extends CustomPainter {
 
     const triangleHeight = 10.0;
     final triangleWidth = triangleHeight * 2 / sqrt(3);
-
 
     /// Top triangle
     final triangleTop = Path()
@@ -149,7 +146,6 @@ class IndicatorDrawingEngine extends CustomPainter {
       ..strokeWidth = 1.5
       ..color = draggableButtonIconsColor; //FancyIndicatorUtils.triangleColor;
 
-
     for (var i = 0; i < n; i++) {
       final startPosition =
           pathMetric.getTangentForOffset(spaceBetweenLine * i)!.position -
@@ -170,7 +166,7 @@ class IndicatorDrawingEngine extends CustomPainter {
       "$selectedPercent$numberAppendix",
       style: ui.TextStyle(
         color: selectedTextColor,
-        fontSize:selectedTextSize,// 30,
+        fontSize: selectedTextSize, // 30,
         fontWeight: FontWeight.bold,
       ),
     );
@@ -187,7 +183,7 @@ class IndicatorDrawingEngine extends CustomPainter {
       final labelPercent = 10 * startValue--;
       final textStyle = ui.TextStyle(
         color: labelTextColor,
-        fontSize: labelTextSize,//20,
+        fontSize: labelTextSize, //20,
         fontWeight: FontWeight.bold,
       );
       final label = FancyIndicatorUtils.generateParagraph(
@@ -205,6 +201,7 @@ class IndicatorDrawingEngine extends CustomPainter {
             4,
             yellowCircle);
       }
+
       ///Hide labelPercent when selectedPercent getting near less than 5
       if (labelPercent - 5 >= selectedPercent ||
           labelPercent < selectedPercent - 5) {
