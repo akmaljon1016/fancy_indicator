@@ -1,3 +1,9 @@
+## 0.0.8
+* Draggable button animation fix
+
+## 0.0.7
+* Draggable button animation fix
+
 ## 0.0.6
 
 * Bug fixes

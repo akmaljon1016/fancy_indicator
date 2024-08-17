@@ -87,7 +87,7 @@ class IndicatorDrawingEngine extends CustomPainter {
     canvas.drawCircle(controlOffset, 28.0, circlePaint);
 
     ///Below codes responsible for Draggable button onDown animation
-    if (waveRadius <= 18.0) {
+    if (waveRadius <= 28.0) {
       Paint wavePaint = Paint()
         ..color =
             draggableButtonCircleColor //FancyIndicatorUtils.greyDarkerColor

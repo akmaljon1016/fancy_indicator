@@ -90,6 +90,8 @@ class _FancyIndicatorState extends State<FancyIndicator>
   }
 
   void _startAnimation() {
+    print("_startAnimation");
+    print(isPlaying);
     if (!isPlaying) {
       _controller.forward();
       isPlaying = true;
@@ -99,6 +101,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
   }
 
   void _pauseAnimation() {
+    print("_pauseAnimation");
     if (isPlaying) {
       _controller.stop();
       isPlaying = false;
@@ -172,7 +175,6 @@ class _FancyIndicatorState extends State<FancyIndicator>
             _validPressed = true;
           }
           _tapPosition = details.localPosition;
-          _startAnimation();
         },
         onVerticalDragEnd: (details) {
           _tapPosition = Offset.zero;
