@@ -4,8 +4,10 @@ FancyIndicator Widget
 The FancyIndicator is a customizable Flutter widget that provides a visual indicator with gradient colors, labels, and a dynamic animation. It can be used to create interactive indicators for selecting a value by tapping or dragging.
 
 ## Showcase
-<img src=https://github.com/akmaljon1016/fancy_indicator/blob/main/screen_record2.gif  height="275">
-<img src=https://github.com/akmaljon1016/fancy_indicator/blob/main/screen_record.gif  height="275">
+<div style="display: flex; flex-direction: row;">
+    <img src="https://github.com/akmaljon1016/fancy_indicator/blob/main/screen_record2.gif" height="275" alt="Fancy Indicator Example 1" style="margin-right: 100px;">
+    <img src="https://github.com/akmaljon1016/fancy_indicator/blob/main/screen_record.gif" height="275" alt="Fancy Indicator Example 2">
+</div>
 
 ## Usage example
 Import the package in your Dart code:
