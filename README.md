@@ -1,6 +1,7 @@
 # fancy_indicator
 
 FancyIndicator Widget
+
 The FancyIndicator is a customizable Flutter widget that serves as a visual indicator with gradient colors, labels, and dynamic animations. It's ideal for creating interactive indicators that users can manipulate by tapping or dragging, providing an intuitive interface for selecting values.
 
 ## Showcase
