@@ -11,7 +11,7 @@ class IndicatorDrawingEngine extends CustomPainter {
   final bool validPressed;
   final double waveRadius;
   final List<Color> gradientColors;
-  final List<double> gradientStopColors;
+  final List<double> gradientColorsStops;
   final List<int> marker;
   final Color labelTextColor;
   final Color selectedTextColor;
@@ -26,7 +26,7 @@ class IndicatorDrawingEngine extends CustomPainter {
       required this.validPressed,
       required this.waveRadius,
       required this.gradientColors,
-      required this.gradientStopColors,
+      required this.gradientColorsStops,
       required this.marker,
       required this.labelTextColor,
       required this.selectedTextColor,
@@ -38,7 +38,7 @@ class IndicatorDrawingEngine extends CustomPainter {
     final centerPoint = Offset(size.width / 2, size.height / 2);
     final gradient = LinearGradient(
       colors: gradientColors,
-      stops: gradientStopColors,
+      stops: gradientColorsStops,
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
     );

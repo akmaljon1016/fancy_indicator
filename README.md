@@ -22,7 +22,7 @@ Import the package in your Dart code:
 const FancyIndicator({
   Key? key,
   required List<Color> gradientColors,
-  required List<double> gradientStopColors,
+  required List<double> gradientColorsStops,
   required double width,
   required double height,
   required Function(int indicatorNumber) onSelectedNumber,
@@ -37,7 +37,7 @@ const FancyIndicator({
 ## Parameters
 - gradientColors (List<Color>): A list of colors used for the gradient in the indicator.
 
-- gradientStopColors (List<double>): A list of stops for the gradient colors.
+- gradientColorsStops (List<double>): A list of stops for the gradient colors.
 
 - width (double): The width of the indicator widget.
 

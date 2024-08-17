@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class FancyIndicator extends StatefulWidget {
   final List<Color> gradientColors;
-  final List<double> gradientStopColors;
+  final List<double> gradientColorsStops;
   final double height;
   final double width;
   final Function(int indicatorNumber) onSelectedNumber;
@@ -14,11 +14,15 @@ class FancyIndicator extends StatefulWidget {
   final Color measureItemColor;
   final Color backgroundColor;
   final String numberAppendix;
+  final Color draggableButtonColor;
+  final Color draggableButtonIconsColor;
+  final Color draggableButtonCircleColor;
+  final Color draggableButtonCircleAnimateColor;
 
   const FancyIndicator(
       {super.key,
       required this.gradientColors,
-      required this.gradientStopColors,
+      required this.gradientColorsStops,
       required this.width,
       required this.height,
       required this.onSelectedNumber,
@@ -27,7 +31,11 @@ class FancyIndicator extends StatefulWidget {
       this.selectedTextColor = FancyIndicatorUtils.blueColor,
       this.measureItemColor = FancyIndicatorUtils.yellowColor,
       this.backgroundColor = FancyIndicatorUtils.primaryColor,
-      this.numberAppendix = "%"});
+      this.numberAppendix = "%",
+      this.draggableButtonColor = FancyIndicatorUtils.whiteColor,
+      this.draggableButtonCircleColor = FancyIndicatorUtils.greyDarkerColor,
+      this.draggableButtonIconsColor = FancyIndicatorUtils.triangleColor,
+      this.draggableButtonCircleAnimateColor = FancyIndicatorUtils.greyColor});
 
   @override
   State<FancyIndicator> createState() => _FancyIndicatorState();
@@ -127,12 +135,16 @@ class _FancyIndicatorState extends State<FancyIndicator>
                     },
                     waveRadius: _animation.value,
                     gradientColors: widget.gradientColors,
-                    gradientStopColors: widget.gradientStopColors,
+                    gradientColorsStops: widget.gradientColorsStops,
                     marker: widget.marker,
                     labelTextColor: widget.labelTextColor,
                     selectedTextColor: widget.selectedTextColor,
                     measureItemColor: widget.measureItemColor,
-                    numberAppendix: widget.numberAppendix),
+                    numberAppendix: widget.numberAppendix,
+                    draggableButtonColor: widget.draggableButtonColor,
+                    draggableButtonIconsColor: widget.draggableButtonIconsColor,
+                    draggableButtonCircleColor: widget.draggableButtonCircleColor,
+                    draggableButtonCircleAnimateColor: widget.draggableButtonCircleAnimateColor),
               );
             }),
         onTapDown: (details) {

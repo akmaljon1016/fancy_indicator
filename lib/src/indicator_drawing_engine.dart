@@ -10,12 +10,16 @@ class IndicatorDrawingEngine extends CustomPainter {
   final bool validPressed;
   final double waveRadius;
   final List<Color> gradientColors;
-  final List<double> gradientStopColors;
+  final List<double> gradientColorsStops;
   final List<int> marker;
   final Color labelTextColor;
   final Color selectedTextColor;
   final Color measureItemColor;
   final String numberAppendix;
+  final Color draggableButtonColor;
+  final Color draggableButtonIconsColor;
+  final Color draggableButtonCircleColor;
+  final Color draggableButtonCircleAnimateColor;
 
   IndicatorDrawingEngine(
       {required this.tapPosition,
@@ -24,19 +28,23 @@ class IndicatorDrawingEngine extends CustomPainter {
       required this.validPressed,
       required this.waveRadius,
       required this.gradientColors,
-      required this.gradientStopColors,
+      required this.gradientColorsStops,
       required this.marker,
       required this.labelTextColor,
       required this.selectedTextColor,
       required this.measureItemColor,
-      required this.numberAppendix});
+      required this.numberAppendix,
+      required this.draggableButtonColor,
+      required this.draggableButtonIconsColor,
+      required this.draggableButtonCircleColor,
+      required this.draggableButtonCircleAnimateColor});
 
   @override
   void paint(Canvas canvas, Size size) {
     final centerPoint = Offset(size.width / 2, size.height / 2);
     final gradient = LinearGradient(
       colors: gradientColors,
-      stops: gradientStopColors,
+      stops: gradientColorsStops,
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
     );
@@ -67,35 +75,38 @@ class IndicatorDrawingEngine extends CustomPainter {
     canvas.drawPath(path, paint);
 
     Paint circlePaint = Paint()
-      ..color = FancyIndicatorUtils.whiteColor
+      ..color = draggableButtonColor//FancyIndicatorUtils.whiteColor
       ..style = PaintingStyle.fill;
     canvas.drawCircle(controlOffset, 28.0, circlePaint);
 
     if (waveRadius <= 24 && waveRadius > 18) {
       Paint wavePaint = Paint()
-        ..color = FancyIndicatorUtils.greyDarkerColor
+        ..color =
+            draggableButtonCircleColor //FancyIndicatorUtils.greyDarkerColor
         ..style = PaintingStyle.stroke
         ..strokeWidth = 8;
       canvas.drawCircle(controlOffset, waveRadius, wavePaint);
     }
 
     if (waveRadius != 40.0 && waveRadius < 28.0) {
-      Paint wavePaint1 = Paint()
-        ..color = FancyIndicatorUtils.greyColor
+      Paint wavePaint = Paint()
+        ..color =
+            draggableButtonCircleAnimateColor //FancyIndicatorUtils.greyColor
         ..style = PaintingStyle.fill
         ..strokeWidth = (waveRadius == 28.0) ? 0 : 2;
-      canvas.drawCircle(controlOffset, waveRadius, wavePaint1);
+      canvas.drawCircle(controlOffset, waveRadius, wavePaint);
     } else if (waveRadius != 40.0 && waveRadius > 28.0) {
-      Paint wavePaint1 = Paint()
-        ..color = FancyIndicatorUtils.greyColor.withAlpha(60)
+      Paint wavePaint = Paint()
+        ..color = draggableButtonCircleAnimateColor
+            .withAlpha(60) //FancyIndicatorUtils.greyColor.withAlpha(60)
         ..style = PaintingStyle.fill
         ..strokeWidth = (waveRadius == 28.0) ? 0 : 2;
-      canvas.drawCircle(controlOffset, waveRadius, wavePaint1);
+      canvas.drawCircle(controlOffset, waveRadius, wavePaint);
     }
 
     final trianglePaint = Paint()
       ..style = PaintingStyle.fill
-      ..color = FancyIndicatorUtils.triangleColor;
+      ..color = draggableButtonIconsColor;//FancyIndicatorUtils.triangleColor;
 
     const triangleHeight = 10.0;
     final triangleWidth = triangleHeight * 2 / sqrt(3);
@@ -125,7 +136,7 @@ class IndicatorDrawingEngine extends CustomPainter {
     final spaceBetweenLine = pathMetric.length / n;
     final linePaint = Paint()
       ..strokeWidth = 1.5
-      ..color = FancyIndicatorUtils.triangleColor;
+      ..color = draggableButtonIconsColor;//FancyIndicatorUtils.triangleColor;
 
     for (var i = 0; i < n; i++) {
       final startPosition =
@@ -165,7 +176,8 @@ class IndicatorDrawingEngine extends CustomPainter {
         fontSize: 20,
         fontWeight: FontWeight.bold,
       );
-      final label = FancyIndicatorUtils.generateParagraph("$labelPercent%", style: textStyle);
+      final label = FancyIndicatorUtils.generateParagraph("$labelPercent%",
+          style: textStyle);
       Paint yellowCircle = Paint()..color = measureItemColor;
 
       if (marker.contains(labelPercent)) {

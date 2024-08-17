@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class IndicatorWidget extends StatefulWidget {
   final int indicatorNumber;
   final List<Color> gradientColors;
-  final List<double> gradientStopColors;
+  final List<double> gradientColorsStops;
   final double height;
   final double width;
   final Function(int indicatorNumber) onSelectedNumber;
@@ -20,7 +20,7 @@ class IndicatorWidget extends StatefulWidget {
       {super.key,
       required this.indicatorNumber,
       required this.gradientColors,
-      required this.gradientStopColors,
+      required this.gradientColorsStops,
       required this.width,
       required this.height,
       required this.onSelectedNumber,
@@ -129,7 +129,7 @@ class _IndicatorWidgetState extends State<IndicatorWidget>
                     waveRadius: _animation.value,
                     currentNumber: widget.indicatorNumber,
                     gradientColors: widget.gradientColors,
-                    gradientStopColors: widget.gradientStopColors,
+                    gradientColorsStops: widget.gradientColorsStops,
                     marker: widget.marker,
                     labelTextColor: widget.labelTextColor,
                     selectedTextColor: widget.selectedTextColor,

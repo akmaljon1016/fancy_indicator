@@ -40,7 +40,7 @@ class _FancyIndicatorExampleState extends State<FancyIndicatorExample> {
                   Color(0xFF02B3E2),
                   Color(0xFFD00D7E),
                 ],
-                gradientStopColors: const [
+                gradientColorsStops: const [
                   0.2,
                   0.7,
                   0.9,

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HumidityPage extends StatefulWidget {
-  HumidityPage({super.key});
+  const HumidityPage({super.key});
 
   @override
   State<HumidityPage> createState() => _HumidityPageState();
@@ -32,17 +32,16 @@ class _HumidityPageState extends State<HumidityPage> {
                   Color(0xFF02B3E2),
                   Color(0xFFD00D7E),
                 ],
-                gradientStopColors: const [
+                gradientColorsStops: const [
                   0.2,
                   0.7,
                   0.9,
                 ],
                 width: MediaQuery.of(context).size.width / 1.8,
                 height: MediaQuery.of(context).size.height,
-                marker: const [30],
+                marker: const [20,30,40],
                 onSelectedNumber: (number) {
                   currentHumidity.value = number;
-                  // print("Hello:$number");
                 },
               ),
               Expanded(
