@@ -33,8 +33,8 @@ class ExampleWidget extends StatelessWidget {
           width: 300,
           height: 100,
           onSelectedNumber: (selectedNumber) {
-            print('Selected Number: $selectedNumber');
           },
+          
           marker: [10, 20, 30],
           labelTextColor: Colors.white,
           selectedTextColor: Colors.green,
