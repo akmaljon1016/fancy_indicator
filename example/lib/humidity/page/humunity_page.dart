@@ -25,6 +25,7 @@ class _HumidityPageState extends State<HumidityPage> {
           height: MediaQuery.of(context).size.height,
           child: Row(
             children: [
+              ///Custom created Indicator widget
               FancyIndicator(
                 numberAppendix: symbol[NumberAppendix.percent] ?? "%",
                 gradientColors: const [
@@ -37,13 +38,15 @@ class _HumidityPageState extends State<HumidityPage> {
                   0.7,
                   0.9,
                 ],
-                width: MediaQuery.of(context).size.width / 1.8,
+                width: MediaQuery.of(context).size.width / 1.85,
                 height: MediaQuery.of(context).size.height,
                 marker: const [20,30,40],
                 onSelectedNumber: (number) {
                   currentHumidity.value = number;
                 },
               ),
+
+              ///Info Detail Section
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -77,7 +80,6 @@ class _HumidityPageState extends State<HumidityPage> {
                     ValueListenableBuilder(
                         valueListenable: currentHumidity,
                         builder: (context, value, child) {
-                          print(value);
                           return Text(
                             "$value%",
                             style: const TextStyle(
@@ -133,7 +135,7 @@ class _HumidityPageState extends State<HumidityPage> {
                             children: [
                               TextSpan(
                                 text:
-                                    "- extreme humidity level.\nUse precaution for set-points outside of 20%-55%",
+                                    " - extreme humidity level.\nUse precaution for set-points outside of 20%-55%",
                                 style: TextStyle(
                                     color: Utils.whiteColor, fontSize: 14),
                               )

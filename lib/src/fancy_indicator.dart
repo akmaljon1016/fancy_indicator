@@ -18,6 +18,8 @@ class FancyIndicator extends StatefulWidget {
   final Color draggableButtonIconsColor;
   final Color draggableButtonCircleColor;
   final Color draggableButtonCircleAnimateColor;
+  final double labelTextSize;
+  final double selectedTextSize;
 
   const FancyIndicator(
       {super.key,
@@ -35,7 +37,9 @@ class FancyIndicator extends StatefulWidget {
       this.draggableButtonColor = FancyIndicatorUtils.whiteColor,
       this.draggableButtonCircleColor = FancyIndicatorUtils.greyDarkerColor,
       this.draggableButtonIconsColor = FancyIndicatorUtils.triangleColor,
-      this.draggableButtonCircleAnimateColor = FancyIndicatorUtils.greyColor});
+      this.draggableButtonCircleAnimateColor = FancyIndicatorUtils.greyColor,
+      this.labelTextSize = 20,
+      this.selectedTextSize = 30});
 
   @override
   State<FancyIndicator> createState() => _FancyIndicatorState();
@@ -143,8 +147,12 @@ class _FancyIndicatorState extends State<FancyIndicator>
                     numberAppendix: widget.numberAppendix,
                     draggableButtonColor: widget.draggableButtonColor,
                     draggableButtonIconsColor: widget.draggableButtonIconsColor,
-                    draggableButtonCircleColor: widget.draggableButtonCircleColor,
-                    draggableButtonCircleAnimateColor: widget.draggableButtonCircleAnimateColor),
+                    draggableButtonCircleColor:
+                        widget.draggableButtonCircleColor,
+                    draggableButtonCircleAnimateColor:
+                        widget.draggableButtonCircleAnimateColor,
+                    labelTextSize: widget.labelTextSize,
+                    selectedTextSize: widget.selectedTextSize),
               );
             }),
         onTapDown: (details) {

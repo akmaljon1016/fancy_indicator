@@ -20,6 +20,8 @@ class IndicatorDrawingEngine extends CustomPainter {
   final Color draggableButtonIconsColor;
   final Color draggableButtonCircleColor;
   final Color draggableButtonCircleAnimateColor;
+  final double labelTextSize;
+  final double selectedTextSize;
 
   IndicatorDrawingEngine(
       {required this.tapPosition,
@@ -37,10 +39,14 @@ class IndicatorDrawingEngine extends CustomPainter {
       required this.draggableButtonColor,
       required this.draggableButtonIconsColor,
       required this.draggableButtonCircleColor,
-      required this.draggableButtonCircleAnimateColor});
+      required this.draggableButtonCircleAnimateColor,
+      required this.labelTextSize,
+      required this.selectedTextSize});
 
   @override
   void paint(Canvas canvas, Size size) {
+
+    ///Gradient line creation
     final centerPoint = Offset(size.width / 2, size.height / 2);
     final gradient = LinearGradient(
       colors: gradientColors,
@@ -61,25 +67,27 @@ class IndicatorDrawingEngine extends CustomPainter {
     final controlOffset = Offset(size.width * 0.7, wavePoint);
     final rect = Rect.fromCircle(center: controlOffset, radius: 25);
 
+    ///Draw curve in line according to draggable button position
     final path = Path()
       ..moveTo(size.width * 0.6, 0)
       ..lineTo(size.width * 0.6, wavePoint - 65)
       ..quadraticBezierTo(
-          size.width * 0.6, wavePoint - 35, size.width * 0.5, wavePoint - 20)
+          size.width * 0.60, wavePoint - 46, size.width * 0.5, wavePoint - 20)
       ..quadraticBezierTo(
-          size.width * 0.40, wavePoint, size.width * 0.5, wavePoint + 20)
+          size.width * 0.44, wavePoint, size.width * 0.5, wavePoint + 20)
       ..quadraticBezierTo(
-          size.width * 0.6, wavePoint + 35, size.width * 0.6, wavePoint + 75)
+          size.width * 0.6, wavePoint + 46, size.width * 0.6, wavePoint + 75)
       ..lineTo(size.width * 0.6, size.height);
-
     canvas.drawPath(path, paint);
 
+    ///Draggable button build
     Paint circlePaint = Paint()
-      ..color = draggableButtonColor//FancyIndicatorUtils.whiteColor
+      ..color = draggableButtonColor //FancyIndicatorUtils.whiteColor
       ..style = PaintingStyle.fill;
     canvas.drawCircle(controlOffset, 28.0, circlePaint);
 
-    if (waveRadius <= 24 && waveRadius > 18) {
+    ///Below codes responsible for Draggable button onDown animation
+    if (waveRadius <= 22.0) {
       Paint wavePaint = Paint()
         ..color =
             draggableButtonCircleColor //FancyIndicatorUtils.greyDarkerColor
@@ -93,50 +101,47 @@ class IndicatorDrawingEngine extends CustomPainter {
         ..color =
             draggableButtonCircleAnimateColor //FancyIndicatorUtils.greyColor
         ..style = PaintingStyle.fill
-        ..strokeWidth = (waveRadius == 28.0) ? 0 : 2;
-      canvas.drawCircle(controlOffset, waveRadius, wavePaint);
-    } else if (waveRadius != 40.0 && waveRadius > 28.0) {
-      Paint wavePaint = Paint()
-        ..color = draggableButtonCircleAnimateColor
-            .withAlpha(60) //FancyIndicatorUtils.greyColor.withAlpha(60)
-        ..style = PaintingStyle.fill
-        ..strokeWidth = (waveRadius == 28.0) ? 0 : 2;
+        ..strokeWidth = (waveRadius >= 28.0) ? 0 : 2;
       canvas.drawCircle(controlOffset, waveRadius, wavePaint);
     }
 
+    ///Create and locate triangles inside Draggable Button
     final trianglePaint = Paint()
       ..style = PaintingStyle.fill
-      ..color = draggableButtonIconsColor;//FancyIndicatorUtils.triangleColor;
+      ..color = draggableButtonIconsColor; //FancyIndicatorUtils.triangleColor;
 
     const triangleHeight = 10.0;
     final triangleWidth = triangleHeight * 2 / sqrt(3);
 
-    // Top triangle
-    final path0 = Path()
+
+    /// Top triangle
+    final triangleTop = Path()
       ..moveTo(controlOffset.dx, controlOffset.dy - triangleHeight / 2 - 6)
       ..lineTo(controlOffset.dx + triangleWidth / 2,
           controlOffset.dy + triangleHeight / 2 - 6)
       ..lineTo(controlOffset.dx - triangleWidth / 2,
           controlOffset.dy + triangleHeight / 2 - 6)
       ..close();
-    canvas.drawPath(path0, trianglePaint);
+    canvas.drawPath(triangleTop, trianglePaint);
 
-    // Bottom triangle
-    final path1 = Path()
+    /// Bottom triangle
+    final triangleBottom = Path()
       ..moveTo(controlOffset.dx, controlOffset.dy + triangleHeight / 2 + 6)
       ..lineTo(controlOffset.dx + triangleWidth / 2,
           controlOffset.dy + triangleHeight / 2 - 2)
       ..lineTo(controlOffset.dx - triangleWidth / 2,
           controlOffset.dy + triangleHeight / 2 - 2)
       ..close();
-    canvas.drawPath(path1, trianglePaint);
+    canvas.drawPath(triangleBottom, trianglePaint);
 
+    ///Generate measurement indicator
     final pathMetric = path.computeMetrics().first;
     const n = 60;
     final spaceBetweenLine = pathMetric.length / n;
     final linePaint = Paint()
       ..strokeWidth = 1.5
-      ..color = draggableButtonIconsColor;//FancyIndicatorUtils.triangleColor;
+      ..color = draggableButtonIconsColor; //FancyIndicatorUtils.triangleColor;
+
 
     for (var i = 0; i < n; i++) {
       final startPosition =
@@ -147,6 +152,7 @@ class IndicatorDrawingEngine extends CustomPainter {
       canvas.drawLine(startPosition, endPosition, linePaint);
     }
 
+    ///draw selected indicator
     final selectedPercent =
         (100 - (100 * (wavePoint - (size.height * 0.1))) / (size.height * 0.8))
             .toInt();
@@ -154,10 +160,10 @@ class IndicatorDrawingEngine extends CustomPainter {
     onShouldDraw(rect.contains(tapPosition) || validPressed, selectedPercent);
 
     final currentSelectedLabelPercent = FancyIndicatorUtils.generateParagraph(
-      "$selectedPercent%",
+      "$selectedPercent$numberAppendix",
       style: ui.TextStyle(
         color: selectedTextColor,
-        fontSize: 30,
+        fontSize:selectedTextSize,// 30,
         fontWeight: FontWeight.bold,
       ),
     );
@@ -166,20 +172,23 @@ class IndicatorDrawingEngine extends CustomPainter {
       Offset(16, wavePoint - currentSelectedLabelPercent.height / 2),
     );
 
+    ///Generate and put text 0,10..100 and add marker
     int labelCount = 10;
     final spaceBetweenLabel = size.height * 0.8 / labelCount;
     int startValue = 10;
     for (var i = 0; i <= labelCount; i++) {
       final labelPercent = 10 * startValue--;
       final textStyle = ui.TextStyle(
-        color: Colors.white,
-        fontSize: 20,
+        color: labelTextColor,
+        fontSize: labelTextSize,//20,
         fontWeight: FontWeight.bold,
       );
-      final label = FancyIndicatorUtils.generateParagraph("$labelPercent%",
+      final label = FancyIndicatorUtils.generateParagraph(
+          "$labelPercent$numberAppendix",
           style: textStyle);
       Paint yellowCircle = Paint()..color = measureItemColor;
 
+      /// Add Marker check marker list if it contains labelPercent then add marker
       if (marker.contains(labelPercent)) {
         canvas.drawCircle(
             Offset(
@@ -189,6 +198,7 @@ class IndicatorDrawingEngine extends CustomPainter {
             4,
             yellowCircle);
       }
+      ///Hide labelPercent when selectedPercent getting near less than 5
       if (labelPercent - 5 >= selectedPercent ||
           labelPercent < selectedPercent - 5) {
         canvas.drawParagraph(
