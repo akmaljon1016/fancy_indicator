@@ -1,7 +1,7 @@
 # fancy_indicator
 
 FancyIndicator Widget
-The FancyIndicator is a customizable Flutter widget that provides a visual indicator with gradient colors, labels, and a dynamic animation. It can be used to create interactive indicators for selecting a value by tapping or dragging.
+The FancyIndicator is a customizable Flutter widget that serves as a visual indicator with gradient colors, labels, and dynamic animations. It's ideal for creating interactive indicators that users can manipulate by tapping or dragging, providing an intuitive interface for selecting values.
 
 ## Showcase
 <div style="display: flex; flex-direction: row;">
@@ -10,49 +10,91 @@ The FancyIndicator is a customizable Flutter widget that provides a visual indic
 </div>
 
 ## Usage example
-Import the package in your Dart code:
 
-   ```yaml
-   https://pub.dev/packages/fancy_indicator
-   ```  
-## FancyIndicator properties
+To use the FancyIndicator widget in your Flutter project, add the following dependency to your pubspec.yaml:
+```
+dependencies:
+  fancy_indicator: ^1.0.0
+
+```
+Then, import the package and use the widget as shown below:
 
 ```Dart
+import 'package:fancy_indicator/fancy_indicator.dart';
 
-const FancyIndicator({
-  Key? key,
-  required List<Color> gradientColors,
-  required List<double> gradientColorsStops,
-  required double width,
-  required double height,
-  required Function(int indicatorNumber) onSelectedNumber,
-  List<int> marker = const [],
-  Color labelTextColor = FancyIndicatorUtils.whiteColor,
-  Color selectedTextColor = FancyIndicatorUtils.blueColor,
-  Color measureItemColor = FancyIndicatorUtils.yellowColor,
-  Color backgroundColor = FancyIndicatorUtils.primaryColor,
-  String numberAppendix = "%",
-})
+class ExampleWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: FancyIndicator(
+          gradientColors: [Colors.blue, Colors.red],
+          gradientColorsStops: [0.0, 1.0],
+          width: 300,
+          height: 100,
+          onSelectedNumber: (selectedNumber) {
+            print('Selected Number: $selectedNumber');
+          },
+          marker: [10, 20, 30],
+          labelTextColor: Colors.white,
+          selectedTextColor: Colors.green,
+          measureItemColor: Colors.yellow,
+          backgroundColor: Colors.black,
+          draggableButtonColor: Colors.white,
+          draggableButtonCircleColor: Colors.grey,
+          draggableButtonIconsColor: Colors.red,
+          draggableButtonCircleAnimateColor: Colors.blue,
+          labelTextSize: 18,
+          selectedTextSize: 24,
+        ),
+      ),
+    );
+  }
+}
+
 ```
-## Parameters
-- gradientColors (List<Color>): A list of colors used for the gradient in the indicator.
+ 
+## FancyIndicator properties
 
-- gradientColorsStops (List<double>): A list of stops for the gradient colors.
+FancyIndicator Properties
 
-- width (double): The width of the indicator widget.
+The FancyIndicator widget exposes several customizable properties, allowing you to tailor the appearance and behavior to fit your needs:
 
-- height (double): The height of the indicator widget.
+Required Parameters:
+- `gradientColors` (List<Color>): The colors used for the gradient fill of the indicator.
+- `gradientColorsStops` (List<double>): Defines the stops for the gradient colors along the indicator's length.
+- `width` (double): The width of the indicator widget.
+- `height` (double): The height of the indicator widget.
+- `onSelectedNumber` (Function(int)): Callback function triggered when a number is selected via tapping or dragging.
 
-- onSelectedNumber (Function(int)): Callback function triggered when a number is selected via dragging or tapping.
+Optional Parameters:
+- `marker` (List<int>): A list of marker points to highlight specific values on the indicator. Default is an empty list.
+- `labelTextColor` (Color): The color of the labels displayed on the indicator. Default is FancyIndicatorUtils.whiteColor.
+- `selectedTextColor` (Color): The color of the selected label text. Default is FancyIndicatorUtils.blueColor.
+- `measureItemColor` (Color): The color of the measurement items. Default is FancyIndicatorUtils.yellowColor.
+- `backgroundColor` (Color): The background color of the indicator widget. Default is FancyIndicatorUtils.primaryColor.
+- `numberAppendix` (String): A string appended to the selected number, e.g., %. Default is "%".
+- `draggableButtonColor` (Color): The color of the draggable button. Default is FancyIndicatorUtils.whiteColor.
+- `draggableButtonIconsColor` (Color): The color of the icons on the draggable button. Default is FancyIndicatorUtils.triangleColor.
+- `draggableButtonCircleColor` (Color): The color of the circle around the draggable button. Default is FancyIndicatorUtils.greyDarkerColor.
+- `draggableButtonCircleAnimateColor` (Color): The animated color of the draggable button circle. Default is FancyIndicatorUtils.greyColor.
+- `labelTextSize` (double): The size of the label text. Default is 20.0.
+- `selectedTextSize` (double): The size of the selected label text. Default is 30.0.
 
-- marker (List<int>): Optional list of marker points that can be used to highlight specific values on the indicator. Default is an empty list.
+## How it Works
 
-- labelTextColor (Color): The color of the labels for the indicator. Default is FancyIndicatorUtils.whiteColor.
+Interactions
 
-- selectedTextColor (Color): The color of the selected label text. Default is FancyIndicatorUtils.blueColor.
+The FancyIndicator widget supports the following interactions:
 
-- measureItemColor (Color): The color used for the measurement items in the indicator. Default is FancyIndicatorUtils.yellowColor.
+- Tapping: Select a value by tapping on the indicator.
+- Dragging: Drag the draggable button to select a value.
+- Animations: Smooth animations are triggered when interacting with the indicator, enhancing the user experience.
 
-- backgroundColor (Color): The background color of the indicator widget. Default is FancyIndicatorUtils.primaryColor.
+Callbacks
 
-- numberAppendix (String): The string appended to the selected number in the indicator. Default is "%".
+The `onSelectedNumber` callback provides the selected value, enabling you to capture user input and respond accordingly in your application
+
+## Conclusion
+The FancyIndicator widget is a powerful and customizable tool for building interactive and visually appealing indicators in Flutter applications. Its wide range of properties allows you to customize the look and feel to match your specific requirements.
+
