@@ -152,7 +152,7 @@ class IndicatorDrawingEngine extends CustomPainter {
     );
     canvas.drawParagraph(
       currentSelectedLabelPercent,
-      Offset(20, wavePoint - currentSelectedLabelPercent.height / 2),
+      Offset(16, wavePoint - currentSelectedLabelPercent.height / 2),
     );
 
     int labelCount = 10;
