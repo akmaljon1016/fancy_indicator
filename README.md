@@ -31,3 +31,25 @@ const FancyIndicator({
   String numberAppendix = "%",
 })
 ```
+## Parameters
+- gradientColors (List<Color>): A list of colors used for the gradient in the indicator.
+
+- gradientStopColors (List<double>): A list of stops for the gradient colors.
+
+- width (double): The width of the indicator widget.
+
+- height (double): The height of the indicator widget.
+
+- onSelectedNumber (Function(int)): Callback function triggered when a number is selected via dragging or tapping.
+
+- marker (List<int>): Optional list of marker points that can be used to highlight specific values on the indicator. Default is an empty list.
+
+- labelTextColor (Color): The color of the labels for the indicator. Default is FancyIndicatorUtils.whiteColor.
+
+- selectedTextColor (Color): The color of the selected label text. Default is FancyIndicatorUtils.blueColor.
+
+- measureItemColor (Color): The color used for the measurement items in the indicator. Default is FancyIndicatorUtils.yellowColor.
+
+- backgroundColor (Color): The background color of the indicator widget. Default is FancyIndicatorUtils.primaryColor.
+
+- numberAppendix (String): The string appended to the selected number in the indicator. Default is "%".
