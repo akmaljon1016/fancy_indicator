@@ -53,12 +53,12 @@ class _FancyIndicatorState extends State<FancyIndicator>
   var _validPressed = false;
   late AnimationController _controller;
   late Animation<double> _animation;
-  bool isPlaying = false;
-  bool isResumed = false;
-  int selectedPercent = 0;
+  bool _isPlaying = false;
+  bool _isResumed = false;
+  int _selectedPercent = 0;
   ///atomicVariable is declared for controlling ValueListenableBuilder
   ///when animation behaviour or status change atomicVariable is assign reverse value
-  ValueNotifier<bool> atomicVariable = ValueNotifier(false);
+  final ValueNotifier<bool> _atomicVariable = ValueNotifier(false);
 
   @override
   void initState() {
@@ -78,54 +78,55 @@ class _FancyIndicatorState extends State<FancyIndicator>
 
     ///This is a listener that trigger addListener every animation value change
     _animation.addListener(() {
-      if (_animation.value <= 18.0 && isPlaying && isResumed == false) {
+      if (_animation.value <= 18.0 && _isPlaying && _isResumed == false) {
         _pauseAnimation();
       }
-      atomicVariable.value = !atomicVariable.value;
+      _atomicVariable.value = !_atomicVariable.value;
     });
 
     ///this is callback function, when animation status change it gives status
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _controller.reset();
-        isPlaying = false;
-        atomicVariable.value = !atomicVariable.value;
+        _isPlaying = false;
+        _atomicVariable.value = !_atomicVariable.value;
       }
     });
   }
 
   ///Start draggable button animation
   void _startAnimation() {
-    if (!isPlaying) {
+    if (!_isPlaying) {
       _controller.forward();
-      isPlaying = true;
-      isResumed = false;
-      atomicVariable.value = !atomicVariable.value;
+      _isPlaying = true;
+      _isResumed = false;
+      _atomicVariable.value = !_atomicVariable.value;
     }
   }
 
   ///Pause draggable button animation
   void _pauseAnimation() {
-    if (isPlaying) {
+    if (_isPlaying) {
       _controller.stop();
-      isPlaying = false;
-      isResumed = false;
-      atomicVariable.value = !atomicVariable.value;
+      _isPlaying = false;
+      _isResumed = false;
+      _atomicVariable.value = !_atomicVariable.value;
     }
   }
 
   ///Resume draggable button animation
   void _resumeAnimation() {
-    if (!isPlaying) {
+    if (!_isPlaying) {
       _controller.forward();
-      isPlaying = true;
-      isResumed = true;
-      atomicVariable.value = !atomicVariable.value;
+      _isPlaying = true;
+      _isResumed = true;
+      _atomicVariable.value = !_atomicVariable.value;
     }
   }
   @override
   void dispose() {
     _controller.stop();
+    _atomicVariable.dispose();
     super.dispose();
   }
 
@@ -137,7 +138,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
       color: widget.backgroundColor,
       child: GestureDetector(
         child: ValueListenableBuilder(
-            valueListenable: atomicVariable,
+            valueListenable: _atomicVariable,
             builder: (context, value, child) {
               return CustomPaint(
                 size: Size(MediaQuery.of(context).size.width / 1.8,
@@ -148,7 +149,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
                     validPressed: _validPressed,
                     onShouldDraw: (bool shouldDraw, int selectedPercent) {
                       _shouldDraw = shouldDraw;
-                      this.selectedPercent = selectedPercent;
+                      this._selectedPercent = selectedPercent;
                     },
                     waveRadius: _animation.value,
                     gradientColors: widget.gradientColors,
@@ -200,7 +201,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
         onVerticalDragEnd: (details) {
           _tapPosition = Offset.zero;
           _validPressed = false;
-          widget.onSelectedNumber(selectedPercent);
+          widget.onSelectedNumber(_selectedPercent);
           _resumeAnimation();
         },
         ///when Draggable button drags it change _validPressed=true
@@ -210,7 +211,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
           if (_shouldDraw) {
             _validPressed = true;
             _dragPosition = details.localPosition;
-            atomicVariable.value = !atomicVariable.value;
+            _atomicVariable.value = !_atomicVariable.value;
           }
         },
       ),

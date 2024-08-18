@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       color: Utils.primaryColor,
     ),
 
-    const HumidityPage(),
+     HumidityPage(),
     Container(color: Utils.primaryColor)
   ];
 
