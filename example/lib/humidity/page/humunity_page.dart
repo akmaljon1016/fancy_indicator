@@ -4,9 +4,11 @@ import 'package:example/generated/assets.dart';
 import 'package:fancy_indicator/fancy_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+/// This class is main design part that show humidity with FancyIndicator
 class HumidityPage extends StatefulWidget {
+  /// Empty constructor
   const HumidityPage({super.key});
+
 
   @override
   State<HumidityPage> createState() => _HumidityPageState();
@@ -25,7 +27,7 @@ class _HumidityPageState extends State<HumidityPage> {
           height: MediaQuery.of(context).size.height,
           child: Row(
             children: [
-              ///Custom created Indicator widget
+              //Custom created Indicator widget
               FancyIndicator(
                 numberAppendix: symbol[NumberAppendix.percent] ?? "%",
                 gradientColors: const [
@@ -46,7 +48,7 @@ class _HumidityPageState extends State<HumidityPage> {
                 },
               ),
 
-              ///Info Detail Section
+              //Info Detail Section
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

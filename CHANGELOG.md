@@ -1,3 +1,9 @@
+## 0.1.3
+*README.md change
+
+## 0.1.2
+* animation fix
+
 ## 0.1.1
 * Example change
 

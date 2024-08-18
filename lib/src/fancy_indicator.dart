@@ -51,28 +51,32 @@ class _FancyIndicatorState extends State<FancyIndicator>
   var _dragPosition = Offset.infinite;
   var _shouldDraw = false;
   var _validPressed = false;
-
   late AnimationController _controller;
   late Animation<double> _animation;
   bool isPlaying = false;
   bool isResumed = false;
-  ValueNotifier<bool> atomicVariable = ValueNotifier(false);
   int selectedPercent = 0;
+  ///atomicVariable is declared for controlling ValueListenableBuilder
+  ///when animation behaviour or status change atomicVariable is assign reverse value
+  ValueNotifier<bool> atomicVariable = ValueNotifier(false);
 
   @override
   void initState() {
     super.initState();
 
+    /// This i controller that responsible for draggable button  animation
     _controller = AnimationController(
       duration: const Duration(milliseconds: 500), // Duration of the animation
       vsync: this,
     );
 
+    /// _animation is Animation object defines animation behaviour
     _animation = Tween<double>(begin: 40.0, end: 0.0).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.linear,
     ));
 
+    ///This is a listener that trigger addListener every animation value change
     _animation.addListener(() {
       if (_animation.value <= 18.0 && isPlaying && isResumed == false) {
         _pauseAnimation();
@@ -80,6 +84,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
       atomicVariable.value = !atomicVariable.value;
     });
 
+    ///this is callback function, when animation status change it gives status
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _controller.reset();
@@ -89,6 +94,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
     });
   }
 
+  ///Start draggable button animation
   void _startAnimation() {
     if (!isPlaying) {
       _controller.forward();
@@ -98,6 +104,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
     }
   }
 
+  ///Pause draggable button animation
   void _pauseAnimation() {
     if (isPlaying) {
       _controller.stop();
@@ -107,6 +114,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
     }
   }
 
+  ///Resume draggable button animation
   void _resumeAnimation() {
     if (!isPlaying) {
       _controller.forward();
@@ -114,6 +122,11 @@ class _FancyIndicatorState extends State<FancyIndicator>
       isResumed = true;
       atomicVariable.value = !atomicVariable.value;
     }
+  }
+  @override
+  void dispose() {
+    _controller.stop();
+    super.dispose();
   }
 
   @override
@@ -155,6 +168,8 @@ class _FancyIndicatorState extends State<FancyIndicator>
                     selectedTextSize: widget.selectedTextSize),
               );
             }),
+
+        ///When Draggable button tap down it change _validPressed =true;
         onTapDown: (details) {
           if (_shouldDraw) {
             _validPressed = true;
@@ -162,23 +177,35 @@ class _FancyIndicatorState extends State<FancyIndicator>
           _tapPosition = details.localPosition;
           _startAnimation();
         },
+        ///When Draggable button tap up it change _validPressed =false;
         onTapUp: (detail) {
           _tapPosition = Offset.zero;
           _validPressed = false;
           _resumeAnimation();
         },
+        ///When Draggable button drag vertically it change _validPressed =true
+        /// and assign new localPosition to_tapPosition;
+
         onVerticalDragStart: (details) {
           if (_shouldDraw) {
             _validPressed = true;
           }
           _tapPosition = details.localPosition;
         },
+        ///When Draggable button finish drag end it change _validPressed =false
+        /// and assign Offset.zero to_tapPosition;
+        ///also  send selectedPercent  number through onSelectedCallback
+        ///and resume animation function for completion and finish
+
         onVerticalDragEnd: (details) {
           _tapPosition = Offset.zero;
           _validPressed = false;
           widget.onSelectedNumber(selectedPercent);
           _resumeAnimation();
         },
+        ///when Draggable button drags it change _validPressed=true
+        ///and assign new localPosition to_tapPosition
+        ///change atomicVariable to reverse value for trigger ValueListenableBuilder
         onVerticalDragUpdate: (details) {
           if (_shouldDraw) {
             _validPressed = true;
