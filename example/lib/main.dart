@@ -13,20 +13,16 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: HomePage(),
     debugShowCheckedModeBanner: false,
   ));
 }
-
-class FancyIndicatorExample extends StatefulWidget {
-  const FancyIndicatorExample({super.key});
-
-  @override
-  State<FancyIndicatorExample> createState() => _FancyIndicatorExampleState();
-}
-
-class _FancyIndicatorExampleState extends State<FancyIndicatorExample> {
+///Example How FancyIndicator works
+class FancyIndicatorExample extends StatelessWidget {
+  /// Empty Constructor
+  FancyIndicatorExample({super.key});
+  /// currentHumidity for trigger ValueListenableBuilder and put new value
   final ValueNotifier<int> currentHumidity = ValueNotifier(0);
 
   @override
@@ -95,7 +91,6 @@ class _FancyIndicatorExampleState extends State<FancyIndicatorExample> {
                     ValueListenableBuilder(
                         valueListenable: currentHumidity,
                         builder: (context, value, child) {
-                          print(value);
                           return Text(
                             "$value%",
                             style: const TextStyle(
