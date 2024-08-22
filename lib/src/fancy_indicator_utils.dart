@@ -35,7 +35,6 @@ class FancyIndicatorUtils {
       ..layout(ParagraphConstraints(width: Size.infinite.width));
   }
 
-
   /// Returns a value that is constrained within the specified range.
   ///
   /// This method takes a [value] and ensures that it falls within the range

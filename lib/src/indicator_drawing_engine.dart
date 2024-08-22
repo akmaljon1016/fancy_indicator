@@ -81,15 +81,18 @@ class IndicatorDrawingEngine extends CustomPainter {
 
     ///Draggable button build
     Paint circlePaint = Paint()
-      ..color = draggableButtonColor ///FancyIndicatorUtils.whiteColor
+      ..color = draggableButtonColor
+
+      ///FancyIndicatorUtils.whiteColor
       ..style = PaintingStyle.fill;
     canvas.drawCircle(controlOffset, 28.0, circlePaint);
 
     ///Below codes responsible for Draggable button onDown animation
     if (waveRadius <= 18.0) {
       Paint wavePaint = Paint()
-        ..color =
-            draggableButtonCircleColor ///FancyIndicatorUtils.greyDarkerColor
+        ..color = draggableButtonCircleColor
+
+        ///FancyIndicatorUtils.greyDarkerColor
         ..style = PaintingStyle.stroke
         ..strokeWidth = 8;
       canvas.drawCircle(controlOffset, waveRadius, wavePaint);
@@ -97,8 +100,9 @@ class IndicatorDrawingEngine extends CustomPainter {
 
     if (waveRadius != 40.0 && waveRadius <= 18.0) {
       Paint wavePaint = Paint()
-        ..color =
-            draggableButtonCircleAnimateColor ///FancyIndicatorUtils.greyColor
+        ..color = draggableButtonCircleAnimateColor
+
+        ///FancyIndicatorUtils.greyColor
         ..style = PaintingStyle.fill
         ..strokeWidth = (waveRadius >= 28.0) ? 0 : 2;
       canvas.drawCircle(controlOffset, waveRadius, wavePaint);
@@ -113,7 +117,9 @@ class IndicatorDrawingEngine extends CustomPainter {
     ///Create and locate triangles inside Draggable Button
     final trianglePaint = Paint()
       ..style = PaintingStyle.fill
-      ..color = draggableButtonIconsColor; ///FancyIndicatorUtils.triangleColor;
+      ..color = draggableButtonIconsColor;
+
+    ///FancyIndicatorUtils.triangleColor;
 
     const triangleHeight = 10.0;
     final triangleWidth = triangleHeight * 2 / sqrt(3);
@@ -144,7 +150,9 @@ class IndicatorDrawingEngine extends CustomPainter {
     final spaceBetweenLine = pathMetric.length / n;
     final linePaint = Paint()
       ..strokeWidth = 1.5
-      ..color = draggableButtonIconsColor; ///FancyIndicatorUtils.triangleColor;
+      ..color = draggableButtonIconsColor;
+
+    ///FancyIndicatorUtils.triangleColor;
 
     for (var i = 0; i < n; i++) {
       final startPosition =
@@ -166,7 +174,9 @@ class IndicatorDrawingEngine extends CustomPainter {
       "$selectedPercent$numberAppendix",
       style: ui.TextStyle(
         color: selectedTextColor,
-        fontSize: selectedTextSize, /// 30,
+        fontSize: selectedTextSize,
+
+        /// 30,
         fontWeight: FontWeight.bold,
       ),
     );
@@ -183,7 +193,9 @@ class IndicatorDrawingEngine extends CustomPainter {
       final labelPercent = 10 * startValue--;
       final textStyle = ui.TextStyle(
         color: labelTextColor,
-        fontSize: labelTextSize, ///20,
+        fontSize: labelTextSize,
+
+        ///20,
         fontWeight: FontWeight.bold,
       );
       final label = FancyIndicatorUtils.generateParagraph(

@@ -4,12 +4,13 @@ import 'package:example/generated/assets.dart';
 import 'package:fancy_indicator/fancy_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 /// This class is main design part that show humidity with FancyIndicator
 class HumidityPage extends StatelessWidget {
   /// Empty constructor
-   HumidityPage({super.key});
+  HumidityPage({super.key});
 
-   /// For Updating Current Humidity
+  /// For Updating Current Humidity
   final ValueNotifier<int> currentHumidity = ValueNotifier(0);
 
   @override

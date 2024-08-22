@@ -56,6 +56,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
   bool _isPlaying = false;
   bool _isResumed = false;
   int _selectedPercent = 0;
+
   ///atomicVariable is declared for controlling ValueListenableBuilder
   ///when animation behaviour or status change atomicVariable is assign reverse value
   final ValueNotifier<bool> _atomicVariable = ValueNotifier(false);
@@ -123,6 +124,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
       _atomicVariable.value = !_atomicVariable.value;
     }
   }
+
   @override
   void dispose() {
     _controller.stop();
@@ -178,12 +180,14 @@ class _FancyIndicatorState extends State<FancyIndicator>
           _tapPosition = details.localPosition;
           _startAnimation();
         },
+
         ///When Draggable button tap up it change _validPressed =false;
         onTapUp: (detail) {
           _tapPosition = Offset.zero;
           _validPressed = false;
           _resumeAnimation();
         },
+
         ///When Draggable button drag vertically it change _validPressed =true
         /// and assign new localPosition to_tapPosition;
 
@@ -193,6 +197,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
           }
           _tapPosition = details.localPosition;
         },
+
         ///When Draggable button finish drag end it change _validPressed =false
         /// and assign Offset.zero to_tapPosition;
         ///also  send selectedPercent  number through onSelectedCallback
@@ -204,6 +209,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
           widget.onSelectedNumber(_selectedPercent);
           _resumeAnimation();
         },
+
         ///when Draggable button drags it change _validPressed=true
         ///and assign new localPosition to_tapPosition
         ///change atomicVariable to reverse value for trigger ValueListenableBuilder
