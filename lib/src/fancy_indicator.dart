@@ -151,7 +151,7 @@ class _FancyIndicatorState extends State<FancyIndicator>
                     validPressed: _validPressed,
                     onShouldDraw: (bool shouldDraw, int selectedPercent) {
                       _shouldDraw = shouldDraw;
-                      this._selectedPercent = selectedPercent;
+                      _selectedPercent = selectedPercent;
                     },
                     waveRadius: _animation.value,
                     gradientColors: widget.gradientColors,

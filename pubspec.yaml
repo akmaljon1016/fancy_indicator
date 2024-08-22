@@ -1,6 +1,6 @@
 name: fancy_indicator
 description: The FancyIndicator is a customizable Flutter widget that serves as a visual indicator with gradient colors, labels, and dynamic animations.
-version: 0.1.3
+version: 0.1.4
 homepage: https://github.com/akmaljon1016/fancy_indicator.git
 
 environment:
